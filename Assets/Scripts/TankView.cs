@@ -26,17 +26,24 @@ public class TankView : MonoBehaviour
     {
         rotation = Input.GetAxis("Horizontal");
     }
+
+    private void Start()
+    {
+        GameObject cam = GameObject.Find("Main Camera");
+        cam.transform.SetParent(transform);
+        cam.transform.position = new Vector3(0f, 3f, -4f);
+    }
     private void Update()
     {
         Movement();
         Rotation();
         if(movement != 0)
         {
-            tankController.Move(movement, 30);
+            tankController.Move(movement, tankController.GetTankModel().movementSpeed);
         }
         if(rotation != 0)
         {
-            tankController.Rotate(rotation, 50);
+            tankController.Rotate(rotation, tankController.GetTankModel().rotationSpeed);
         }
     }
 }
