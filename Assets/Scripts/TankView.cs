@@ -9,6 +9,8 @@ public class TankView : MonoBehaviour
     private float movement;
     private float rotation;
 
+    public MeshRenderer[] child;
+
     public void SetTankController(TankController _tankController)
     {
         tankController = _tankController;
@@ -44,6 +46,14 @@ public class TankView : MonoBehaviour
         if(rotation != 0)
         {
             tankController.Rotate(rotation, tankController.GetTankModel().rotationSpeed);
+        }
+    }
+
+    public void ChangeColor(Material color)
+    {
+        for(int i = 0; i< child.Length; i++)
+        {
+            child[i].material= color;
         }
     }
 }
